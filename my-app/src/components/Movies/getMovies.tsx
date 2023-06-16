@@ -1,22 +1,19 @@
-const DOMAIN =  'http://www.omdbapi.com/?i=tt3896198&apikey=da2c0b84';
+const DOMAIN = "http://www.omdbapi.com";
+const MOVIES = "/?i=tt3896198&apikey=da2c0b84";
+
+///?apikey=[YOUR_KEY]&
 
 export type Movie = {
-    id: number,
-    title: string,
-    year: string,
-    genre: string,
-    image: string,
-};
-
-type MoviesResponse = {
-    count: number;
-    next: string;
-    previous?:string,
-    results: Movie[];
-};
+    id: number;
+    Poster: string;
+    Title: string,
+    Genre: string,
+    imdbRating: string,
+}
 
 export const getMovies = async () => {
-    const response = await fetch(DOMAIN);
-    const movies: MoviesResponse  = await response.json();
-    return movies.results;
-};
+    const moviesUrl = new URL(DOMAIN+MOVIES);
+    const response = await fetch(moviesUrl);
+    const movies = await response.json();
+    return [movies];
+}

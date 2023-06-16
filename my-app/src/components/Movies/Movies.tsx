@@ -4,11 +4,13 @@ import { RenderMovies } from './RenderMovies';
 
 export const Movies = () => {
 
-    const [movies, setMovie] = useState<Movie[]>([])
+    const [movies, setMovies] = useState<Movie[]>([])
 
-    useEffect(() => { getMovies().then((film) => setMovie(film)) }, [])
+    useEffect(() => { getMovies().then((mov) => setMovies(mov)) }, [])
 
     return (<>
-        {movies.map((item) => <RenderMovies movie={item} />)}
+        <div className='movies__wrapper'>
+            {movies.map((item) => <RenderMovies movie={item} />)}
+        </div>
     </>)
 }

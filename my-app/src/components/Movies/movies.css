@@ -1,12 +1,55 @@
 .movies__wrapper{
-    max-width: 900px;
-    border: 1px solid red;
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+    padding: 50px 0;
 }
 
 .movie{
-    border: 1px solid blue;
+    max-height: 433px;
+    max-width: 266px;
     display: flex;
     flex-wrap: wrap;
-    height: 200px;
-    width: 100px;
+    position: relative;
 }
+
+.movie__title{
+    color: white;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.movie__image{
+    max-width: 266px;
+    max-height: 357px;
+    border-radius: 20px;
+}
+
+.movie__image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.movie__genre{
+    color: #AFB2B6;;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.movie__ranking{
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    background-color: #00A340;
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+
