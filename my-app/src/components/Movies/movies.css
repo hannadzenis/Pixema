@@ -1,0 +1,12 @@
+.movies__wrapper{
+    max-width: 900px;
+    border: 1px solid red;
+}
+
+.movie{
+    border: 1px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+    width: 100px;
+}
