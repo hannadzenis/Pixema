@@ -6,7 +6,7 @@ export const Movies = () => {
 
     const [movies, setMovies] = useState<Movie[]>([])
 
-    useEffect(() => { getMovies().then((mov) => setMovies(mov)) }, [])
+    useEffect(() => { getMovies().then((mov) => setMovies(mov))}, [])
 
     return (<>
         <div className='movies__wrapper'>

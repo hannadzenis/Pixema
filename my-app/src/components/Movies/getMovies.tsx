@@ -1,19 +1,17 @@
-const DOMAIN = "http://www.omdbapi.com";
-const MOVIES = "/?i=tt3896198&apikey=da2c0b84";
-
-///?apikey=[YOUR_KEY]&
+const DOMAIN = "https://yts.mx/api/v2/list_movies.json";
 
 export type Movie = {
-    id: number;
-    Poster: string;
-    Title: string,
-    Genre: string,
-    imdbRating: string,
+    id: number,
+    background_image: string,
+    title: string,
+    genres: string,
+    rating: number,
 }
 
 export const getMovies = async () => {
-    const moviesUrl = new URL(DOMAIN+MOVIES);
+    const moviesUrl = new URL(DOMAIN);
     const response = await fetch(moviesUrl);
     const movies = await response.json();
-    return [movies];
+    const films = movies.data.movies;
+    return films;
 }

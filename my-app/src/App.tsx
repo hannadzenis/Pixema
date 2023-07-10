@@ -8,7 +8,7 @@ function App() {
   return (
     <>
     <Container>
-        <Header/>
+        <Header clickSearch={()=>{console.log('done')}}/>
         <Movies/>
     </Container>
     </>
