@@ -11,14 +11,13 @@ type Props = {
 export const Header = ({username, clickSearch}:Props) => {
     const getSearchValue = (inputValue: string) => {
         clickSearch(inputValue)
-        console.log('ao')
     }
     return (
         <div className='header'>
             <a href="#">
                 <img src="./img/logo.svg"/>
             </a>
-            <Search username={username} clickSearch={getSearchValue} />
+            <Search searchString={''}/>
             <Profile />
         </div>
     )
