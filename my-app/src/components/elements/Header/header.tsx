@@ -1,24 +1,19 @@
-import React from 'react';
+import { SearchInput } from '../../UI/Search/Search'
 import './header.css'
-import { Profile } from './profile';
-import { Search } from '../../UI/Search/Search';
+// import { Search } from '../../UI/Search/Search';
 
-type Props = {
-    username?: string,
-    clickSearch: (inputValue: string) => void
+type HeaderProps = {
+	handleSearch: (searchInputValue: string) => void,
 }
 
-export const Header = ({username, clickSearch}:Props) => {
-    const getSearchValue = (inputValue: string) => {
-        clickSearch(inputValue)
-    }
+export const Header =  ({handleSearch,}: HeaderProps)  => {
+
     return (
         <div className='header'>
             <a href="#">
                 <img src="./img/logo.svg"/>
             </a>
-            <Search searchString={''}/>
-            <Profile />
+            <SearchInput/>
         </div>
     )
 }

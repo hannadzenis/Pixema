@@ -1,45 +1,35 @@
-import { ChangeEvent, useState } from 'react';
-import { DOMAIN } from '../../Movies/getMovies';
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../Store/store";
+import { setSearchInput } from "../../../Store/movies";
 
-const API_KEY = "da2c0b84"
-
-type Props = {
-    searchString: string,
-    // event: ChangeEvent, 
+export type SearchInputProps = {
+    tablet?: boolean,
+    onSideBarClick?: (event: React.MouseEvent) => void
 }
 
-export const Search = ({ searchString}: Props) => {
-    const [search, setSearch] = useState('');
-    const [timeoutId, setTimeoutId] = useState();
-    // console.log(search)
-    const fetchData = async() => {
-        const response = await fetch(DOMAIN+`/?s=${searchString}&apikey=${API_KEY}`)
-        console.log(response)
-    }
-    const onTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        clearTimeout(timeoutId);
-        setSearch(event.currentTarget.value);
-        const timeout = setTimeout(()=> fetchData(event.currentTarget.value), 500);
-        setTimeoutId(timeout)
-    }
+export const SearchInput = ({tablet, onSideBarClick}: SearchInputProps) => {
+	const searchInputValue = useAppSelector(state => state.movies.searchInputValue)
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 
-    // const handleSearch = () => {
-    //     // console.log('Component Search: ', search);
-    //     clickSearch(search);
-    // }
-
-    return (
-        <div className='search'>
-            <input type="text" placeholder='Search' value={search} onChange={onTextChange}/>
-            {/* <button onClick={handleSearch}>Search</button> */}
-        </div>
-    )
+	const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		if (onSideBarClick) {
+			onSideBarClick(e)
+		}
+		if (searchInputValue) {
+			navigate(`/search/${searchInputValue}`)
+			dispatch(setSearchInput(''))
+		}else navigate('/')
+	}
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		dispatch(setSearchInput(e.target.value))
+	}
+	if (tablet) {
+		return(
+			<div className='search'>
+				<input type='search' placeholder='Search' value={searchInputValue} onChange={handleInput}></input>
+				<button onClick={handleSearch}></button>
+			</div>
+		)
+	}
 }
-
-function updateTimeout(timeout: NodeJS.Timeout) {
-    throw new Error('Function not implemented.');
-}
-function updateSearch(value: any) {
-    throw new Error('Function not implemented.');
-}
-
