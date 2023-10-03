@@ -13,8 +13,9 @@ export const RenderMovie = ({ oneMovie }: { oneMovie?: OneMovieWithGenre }) => {
     if (!oneMovie) return null
 
     return (
-        <Card title={oneMovie.title}>
+        // <div title={oneMovie.title} style={{margin: 20}}>
             <Link to={'/movies/' + oneMovie.id}>
+                <div className="movie__title">{oneMovie.title}</div>
                 <div className="movie__image">
                     <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
                 </div>
@@ -24,6 +25,6 @@ export const RenderMovie = ({ oneMovie }: { oneMovie?: OneMovieWithGenre }) => {
                     <p className="movie__genre">{genres}</p>
                 </div>
             </Link>
-        </Card>
+        // </div>
     )
 }
