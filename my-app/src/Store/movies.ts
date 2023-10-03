@@ -1,96 +1,76 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { RootState } from './store'
-import { OneMovie, getMovies, SearchMoviesThunkParams, searchMovies, MovieState, getOneMovie, Response, OneMovieShort} from "./getMovies";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { getMovies, getMoviesBySearch, getPopularMovies, OneGenre, OneMovie } from "./getMovies";
 
-const initialState: MovieState = {
-    movies: [],
-    description: {
-        error: '',
-        original_title: '',
-        genres: '',
-        overview: '',
-        poster_path: '',
-        release_date: '',
-        mn: '',
-        vote_average: '',
-    },
-    searchInputValue: '',
-    moviesFoundByTitle: [],
-    allMovies: 0, 
-    page: 1, 
-    pageNum: 0,
-    status: '',
+export type MovieState = {
+    movies: OneMovie[],
+    genres: OneGenre[],
+    userName: string,
+    userEmail: string,
+    userPassword: string,
+    isTouched: boolean,
 }
 
-export const getMoviesThunk = createAsyncThunk('movies/getMoreMoviesThunk', async () => {
-    const serverMovies = await getMovies();
-    return serverMovies
-})
+const initialState: MovieState = { 
+    movies: [],
+    genres: [],
+    userName: '',
+    userEmail: '',
+    userPassword: '',
+    isTouched: false,
+}
 
-export const getOneMovieThunk = createAsyncThunk('movies/getOneMovieThunk', async (mn: string) => {
-    const serverMovie = await getOneMovie(mn);
-    return serverMovie
-})
+export const getMoviesThunk = createAsyncThunk("movies/getMovies", async ({ search = '' }: { search?: string }) => {
+    const movies = search ? await getMoviesBySearch({ 'search': search }) : (await getMovies()).results;
+    return movies;
+    }
+);
 
-export const searchMoviesThunk = createAsyncThunk<Response, SearchMoviesThunkParams, {state: RootState }>('movies/searchMoviesThunk', async ({original_title, page}: SearchMoviesThunkParams)=>{
-    const serverMovies = await searchMovies(original_title, page)
-    return serverMovies
-})
+export const getPopularThunk = createAsyncThunk("movies/getPopularMovie", async () => {
+    const movies = await getPopularMovies();
+    return movies;
+    }
+);
 
-export const MoviesSlice = createSlice({
-    name: 'movies', 
-    initialState, 
+export const moviesSlice = createSlice({
+    name: 'movies',
+    initialState,
     reducers: {
-        setSearchInput: (state, action: PayloadAction<string>) => {
-            return { ...state, searchInputValue: action.payload}
+        setMovies: (state, action: PayloadAction<OneMovie[]>) => {
+            state.movies = action.payload
         },
-        setPage: (state, action: PayloadAction<number>)=>{
-            return { ...state, page: action.payload}
-        }
+        toggleFavoritesMovie: (state, action: PayloadAction<number>) => {
+            const movie = state.movies.find(movie => movie.id === action.payload)
+            if (!movie) return
+            movie.favorite = !movie.favorite
+        },
+        setGenres: (state, action: PayloadAction<OneGenre[]>) => {
+            state.genres = action.payload
+        },
+        setUserName: (state, action: PayloadAction<string>) => {
+            state.userName = action.payload
+        },
+        setUserEmail: (state, action: PayloadAction<string>) => {
+            state.userEmail = action.payload
+        },
+        setUserPassword: (state, action: PayloadAction<string>) => {
+            state.userPassword = action.payload
+        },
+        toggleFilter: (state, action: PayloadAction<boolean>) => {
+            state.isTouched = action.payload
+        },
     },
     extraReducers(builder) {
-        builder
-            .addCase(getMoviesThunk.pending, (state)=>{
-                return {...state, status: 'loading'}
+        builder.addCase(getMoviesThunk.fulfilled, (state, action: PayloadAction<OneMovie[]>) => {
+            state.movies = action.payload
+        })
+            .addCase(getPopularThunk.fulfilled, (state, action: PayloadAction<OneMovie[]>) => {
+                state.movies = action.payload
             })
-            .addCase(getMoviesThunk.fulfilled, (state, action: PayloadAction<OneMovieShort[]>)=>{
-                return {...state, movies: action.payload, status: 'fulfilled'}
-            })
-            .addCase(getMoviesThunk.rejected, (state)=>{
-                return {...state, status: 'rejected'}
-            })
-            .addCase(getOneMovieThunk.pending, (state)=>{
-                return {...state, status: 'loading'}
-            })
-            .addCase(getOneMovieThunk.fulfilled, (state, action: PayloadAction<OneMovie>)=>{
-                return {...state, description: action.payload, status: 'fulfilled'}
-            })
-            .addCase(getOneMovieThunk.rejected, (state)=>{
-                return {...state, status: 'rejected'}
-            })
-            .addCase(searchMoviesThunk.pending, (state)=>{
-                return {...state, status: 'loading'}
-            })
-            .addCase(searchMoviesThunk.fulfilled, (state, action: PayloadAction<Response>) => {
-                const { results, total } = action.payload
-    
-                const totalConverted = (total && Number(total) > 0) ? Number(total) : 0
-                const moviesQtyAtArr = 10
-    
-                const pageNum = Math.ceil(totalConverted / moviesQtyAtArr)
-    
-                return { ...state, moviesFoundByTitle: results, pageNum: pageNum, total: totalConverted, status: 'fulfilled' }
-            })
-            .addCase(searchMoviesThunk.rejected, (state) => {
-                return { ...state, status: 'rejected' }
-            })
-        }
+    },
 })
 
-export const { setSearchInput, setPage } = MoviesSlice.actions
-
-export const moviesReducer = MoviesSlice.reducer
-
+export const { setGenres, setUserName, setUserEmail, setUserPassword, setMovies, toggleFavoritesMovie,toggleFilter } = moviesSlice.actions
+export const moviesReducer = moviesSlice.reducer
 
 
 
