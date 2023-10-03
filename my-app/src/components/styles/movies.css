@@ -1,0 +1,59 @@
+/* *{
+    background-color: black;
+} */
+
+.movie{
+    position: relative;
+}
+
+.movies__wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    grid-template-rows: repeat(1, minmax(200px, auto));
+    grid-auto-rows: minmax(200px, auto);
+    padding: 50px;
+    gap: 50px;
+    justify-content: center;
+}
+
+.movie__title{
+    color: white;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.movie__image{
+    max-width: 300px;
+    max-height: 200px;
+    /* border-radius: 20px; */
+}
+
+.movie__image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie__genre{
+    color: #AFB2B6;;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.movie__ranking{
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    background-color: #00A340;
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+
+
