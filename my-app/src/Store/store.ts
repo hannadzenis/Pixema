@@ -7,10 +7,10 @@ import { filtersReducer } from './filter'
 
 export const store = configureStore({
     reducer: {
-        auth: authReducer,
+        // auth: authReducer,
         movies: moviesReducer,
         // genres: genresReducer,
-        filter: filtersReducer,
+        // filter: filtersReducer,
     },
 })
 

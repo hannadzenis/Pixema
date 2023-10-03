@@ -1,19 +1,30 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from './store'
-import { OneMovie, getMovies, SearchMoviesThunkParams, searchMovies, MovieState, getOneMovie, Response} from "../components/Movies/getMovies";
+import { OneMovie, getMovies, SearchMoviesThunkParams, searchMovies, MovieState, getOneMovie, Response, OneMovieShort} from "./getMovies";
 
 const initialState: MovieState = {
     movies: [],
+    description: {
+        error: '',
+        original_title: '',
+        genres: '',
+        overview: '',
+        poster_path: '',
+        release_date: '',
+        mn: '',
+        vote_average: '',
+    },
     searchInputValue: '',
     moviesFoundByTitle: [],
-    allPages: 0, 
+    allMovies: 0, 
     page: 1, 
+    pageNum: 0,
     status: '',
 }
 
-export const getMoreMoviesThunk = createAsyncThunk('books/getMoreMoviesThunk', async () => {
-    const serverBooks = await getMovies();
-    return serverBooks
+export const getMoviesThunk = createAsyncThunk('movies/getMoreMoviesThunk', async () => {
+    const serverMovies = await getMovies();
+    return serverMovies
 })
 
 export const getOneMovieThunk = createAsyncThunk('movies/getOneMovieThunk', async (mn: string) => {
@@ -21,8 +32,8 @@ export const getOneMovieThunk = createAsyncThunk('movies/getOneMovieThunk', asyn
     return serverMovie
 })
 
-export const searchMoviesThunk = createAsyncThunk<Response, SearchMoviesThunkParams, {state: RootState }>('movies/searchMoviesThunk', async ({title, page}: SearchMoviesThunkParams, store)=>{
-    const serverMovies = await searchMovies(title, page)
+export const searchMoviesThunk = createAsyncThunk<Response, SearchMoviesThunkParams, {state: RootState }>('movies/searchMoviesThunk', async ({original_title, page}: SearchMoviesThunkParams)=>{
+    const serverMovies = await searchMovies(original_title, page)
     return serverMovies
 })
 
@@ -39,36 +50,36 @@ export const MoviesSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(getMoreMoviesThunk.pending, (state)=>{
+            .addCase(getMoviesThunk.pending, (state)=>{
                 return {...state, status: 'loading'}
             })
-            .addCase(getMoreMoviesThunk.fulfilled, (state, action: PayloadAction<OneMovie[]>)=>{
+            .addCase(getMoviesThunk.fulfilled, (state, action: PayloadAction<OneMovieShort[]>)=>{
                 return {...state, movies: action.payload, status: 'fulfilled'}
             })
-            .addCase(getMoreMoviesThunk.rejected, (state)=>{
+            .addCase(getMoviesThunk.rejected, (state)=>{
                 return {...state, status: 'rejected'}
             })
-            .addCase(getMoreMoviesThunk.pending, (state)=>{
+            .addCase(getOneMovieThunk.pending, (state)=>{
                 return {...state, status: 'loading'}
             })
-            .addCase(getMoreMoviesThunk.fulfilled, (state, action: PayloadAction<OneMovie[]>)=>{
-                return {...state, movies: action.payload, status: 'fulfilled'}
+            .addCase(getOneMovieThunk.fulfilled, (state, action: PayloadAction<OneMovie>)=>{
+                return {...state, description: action.payload, status: 'fulfilled'}
             })
-            .addCase(getMoreMoviesThunk.rejected, (state)=>{
+            .addCase(getOneMovieThunk.rejected, (state)=>{
                 return {...state, status: 'rejected'}
             })
-            .addCase(getMoreMoviesThunk.pending, (state)=>{
+            .addCase(searchMoviesThunk.pending, (state)=>{
                 return {...state, status: 'loading'}
             })
             .addCase(searchMoviesThunk.fulfilled, (state, action: PayloadAction<Response>) => {
-                const { results, allPages } = action.payload
+                const { results, total } = action.payload
     
-                const totalConverted = (allPages && Number(allPages) > 0) ? Number(allPages) : 0
-                const booksQtyAtArr = 10
+                const totalConverted = (total && Number(total) > 0) ? Number(total) : 0
+                const moviesQtyAtArr = 10
     
-                const pageQty = Math.ceil(totalConverted / booksQtyAtArr)
+                const pageNum = Math.ceil(totalConverted / moviesQtyAtArr)
     
-                return { ...state, booksFoundByTitle: results, pageQty: pageQty, total: totalConverted, status: 'fulfilled' }
+                return { ...state, moviesFoundByTitle: results, pageNum: pageNum, total: totalConverted, status: 'fulfilled' }
             })
             .addCase(searchMoviesThunk.rejected, (state) => {
                 return { ...state, status: 'rejected' }

@@ -1,7 +1,9 @@
 import './App.css';
 import { Container } from './components/Container/container';
-import { Header } from './components/elements/Header/header';
-import { Movies } from './components/Movies/Movies';
+import { RenderMovies } from './components/Movies/RenderMovies';
+import { Header } from './components/elements/Header';
+// import { Movies } from './components/Movies/Movies';
+import { Navigation } from './components/elements/Navigation';
 
 function App() {
   function getSearchValue(searchInputValue: string): void {
@@ -11,8 +13,9 @@ function App() {
   return (
     <>
     <Container>
-        <Header handleSearch={getSearchValue}/>
-        <Movies searchInputValue={''}/>
+        {/* <Navigation/> */}
+        <Header></Header>
+        <RenderMovies></RenderMovies>
     </Container>
     </>
   );
