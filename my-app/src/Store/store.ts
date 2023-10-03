@@ -1,16 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux/es/exports'
-import { authReducer } from './auth'
-import { moviesReducer } from './movies'
-// import { genresReducer } from './genres'
-import { filtersReducer } from './filter'
+import { moviesReducer } from './movieSlice'
 
 export const store = configureStore({
     reducer: {
-        // auth: authReducer,
         movies: moviesReducer,
-        // genres: genresReducer,
-        // filter: filtersReducer,
     },
 })
 

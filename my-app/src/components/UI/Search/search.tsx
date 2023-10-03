@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
-import { setSearchInput } from "../../../Store/movies";
+import { setSearchInput } from "../../../Store/movieSlice";
 
 export type SearchProps = {
     tablet?: boolean,
