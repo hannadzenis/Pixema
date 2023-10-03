@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom"
 import { Header } from "./Header"
 import { AllMovies } from "./Movies/MovieList"
 import { OneMovie } from "./Movies/oneMovie"
+import { FavoriteMovies } from "./FilterMovies"
+import { PopularMovies } from "./Popuar"
 
 export const MainPage = () => {
     const [showMenu, setShowMenu] = useState(true)
@@ -22,6 +24,8 @@ export const MainPage = () => {
                     <Routes>
                         <Route index element={<AllMovies />} />
                         <Route path=':movieId' element={<OneMovie />} />
+                        <Route path='favorite' element={<FavoriteMovies />} />
+                        <Route path='popular' element={<PopularMovies />} />
                     </Routes>
                 </div>
             </div>
