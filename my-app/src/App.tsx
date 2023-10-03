@@ -1,24 +1,16 @@
-import './App.css';
-import { Container } from './components/Container/container';
-import { RenderMovies } from './components/Movies/RenderMovies';
-import { Header } from './components/elements/Header';
-// import { Movies } from './components/Movies/Movies';
-import { Navigation } from './components/elements/Navigation';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+import { store } from "./Store/store";
+import { Navigation } from "./components/Navigation";
 
-function App() {
-  function getSearchValue(searchInputValue: string): void {
-    throw new Error('Function not implemented.');
-  }
+export const App = () => {
 
-  return (
-    <>
-    <Container>
-        {/* <Navigation/> */}
-        <Header></Header>
-        <RenderMovies></RenderMovies>
-    </Container>
-    </>
-  );
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <Navigation />
+            </BrowserRouter>
+        </Provider>
+    )
+
 }
-
-export default App;
