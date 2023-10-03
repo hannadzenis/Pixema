@@ -1,35 +1,29 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../Store/store"
-import { getMoviesThunk } from "../../Store/movies"
-import { Loading } from "../elements/Loading"
-import { NotFoundError } from "../elements/NorFoundError"
-import { ErrorMessage } from "../elements/ErrorMessage"
-import { OneMovieShort } from "../../Store/getMovies"
-import { MovieShort } from "./MovieShort"
-
-export const RenderMovies = () =>{
-    const movies = useAppSelector(state => state.movies.movies)
-    const status = useAppSelector(state => state.movies.status)
-    const dispatch = useAppDispatch()
-
-    useEffect(()=>{
-        dispatch(getMoviesThunk())
-    }, [])
+import { Link } from "react-router-dom"
+import '../styles/movies.css'
+import { Card, Statistic } from "antd"
+import { OneMovieWithGenre } from "../../Store/getMovies"
 
 
-    if(status === 'loading'){
-        return <Loading/>
-    }
-    if(movies.length === 0 && status === 'fulfilled'){
-        return <NotFoundError/>
-    }
-    if(status === 'rejected'){
-        return <ErrorMessage/>
-    }
+export const IMG = "https://image.tmdb.org/t/p/w500/"
 
-    return(
-        <div className='movies__wrapper'>
-        {movies.map((movie: OneMovieShort) => <MovieShort movie={movie}></MovieShort>)}
-        </div>
+export const RenderMovie = ({ oneMovie }: { oneMovie?: OneMovieWithGenre }) => {
+
+    const genres = oneMovie?.genre.join(' · ')
+
+    if (!oneMovie) return null
+
+    return (
+        <Card title={oneMovie.title}>
+            <Link to={'/movies/' + oneMovie.id}>
+                <div className="movie__image">
+                    <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
+                </div>
+                <div>
+                    {/* <>{RatingMovie(oneMovie.vote_average)}</> */}
+                    <Statistic value={oneMovie.vote_average} suffix="/10"/>
+                    <p className="movie__genre">{genres}</p>
+                </div>
+            </Link>
+        </Card>
     )
 }
