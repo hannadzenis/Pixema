@@ -1,0 +1,40 @@
+.header__wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 50px;
+}
+
+.search{
+    flex-grow: 1;
+}
+
+.search input{
+    width: 100%;
+    background: #323537;
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: #ffff;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+
+.profile__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.profle__initials{
+    padding: 15px;
+    border-radius: 10px;
+    background: #7B61FF;
+    color: #ffff;
+    font-size: 20px;
+}
+
+.profle__name{
+    color: #ffff;
+    font-size: 16px;
+}
