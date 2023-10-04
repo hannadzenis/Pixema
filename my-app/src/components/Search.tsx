@@ -8,15 +8,15 @@ export const Search = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <div className='search__wrapper'>
-            <input className='search-input' type='search' placeholder="Search..." value={searchResult} onChange={(e) => {
+        <div className='search'>
+            <input type='search' placeholder="Search..." value={searchResult} onChange={(e) => {
                 setSearchResult(e.currentTarget.value)
                 dispatch(getMoviesThunk({ search: e.currentTarget.value }))
             }}></input>
-            <button className='sort__button' onClick={() => {
+            {/* <button className='sort__button' onClick={() => {
                 dispatch(toggleFilter(true))
             }}>
-            </button>
+            </button> */}
         </div>
     )
 }

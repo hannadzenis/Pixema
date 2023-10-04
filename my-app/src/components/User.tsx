@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './styles/header.css';
 import { useAppSelector } from "../Store/store";
 
 
@@ -9,17 +10,17 @@ export const User = () => {
         const nameSurnameArr = username.split(' ');
         const userInitials = (nameSurnameArr[0][0] + nameSurnameArr[1][0]).toUpperCase();
         return (
-            <div className='user-wrapper'>
-                <p className='user-initials'>{userInitials}</p>
-                <p className='user-name'>{username}</p>
+            <div className='profile__wrapper'>
+                <p className='profle__initials'>{userInitials}</p>
+                <p className='profle__name'>{username}</p>
             </div>
         )
     }
     else
         return (
-            <div className='user-wrapper'>
+            <div className='profile__wrapper'>
                 {/* <PersonIcon sx={{ color: "#20B2AA", fontSize: 40 }} /> */}
-                <Link className='user-name' to='/auth'>Sign in</Link>
+                <Link className='profle__name' to='/auth'>Sign in</Link>
             </div>
         )
 

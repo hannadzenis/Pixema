@@ -10,25 +10,22 @@ type Props = {
 }
 
 export const Header = ({ touched, handleClick }: Props) => {
-    const [isTouched, setIsTouched] = useState(touched)
+    // const [isTouched, setIsTouched] = useState(!touched)
 
-    const click = () => {
-        setIsTouched(!isTouched)
-        handleClick(!!isTouched)
-    }
+    // const click = () => {
+    //     setIsTouched(!isTouched)
+    //     handleClick(!!isTouched)
+    // }
 
     return (
         <div className='header__wrapper'>
-            <Title />
+            {/* <Title /> */}
             <Search />
             <User />
-            <button className='header-button' onClick={click}>
-                {isTouched ? <>
-                    <hr className='header-span'></hr>
-                    <hr className='header-span'></hr>
-                    <hr className='header-span'></hr></> :
+            {/* <button className='header-button' onClick={click}>
+                {isTouched ? <></> :
                     <span className='header-close-span'>✖</span>}
-            </button>
+            </button> */}
         </div>
     )
 }

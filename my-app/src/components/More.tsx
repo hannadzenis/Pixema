@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { setMovies } from "../Store/movieSlice"
 import { useAppSelector, useAppDispatch } from "../Store/store"
 import { getMovies } from "../Store/getMovies"
+import './styles/menu.css'
 
 export const ShowMore = () => {
     const [page, setPage] = useState<number>(1)

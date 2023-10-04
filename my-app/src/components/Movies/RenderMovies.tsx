@@ -13,18 +13,17 @@ export const RenderMovie = ({ oneMovie }: { oneMovie?: OneMovieWithGenre }) => {
     if (!oneMovie) return null
 
     return (
-        // <div title={oneMovie.title} style={{margin: 20}}>
-            <Link to={'/movies/' + oneMovie.id}>
-                <div className="movie__title">{oneMovie.title}</div>
-                <div className="movie__image">
-                    <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
-                </div>
+        <Link to={'/movies/' + oneMovie.id} style={{textDecoration:'none'}}>
+            <div className="movie">
                 <div>
-                    {/* <>{RatingMovie(oneMovie.vote_average)}</> */}
-                    <Statistic value={oneMovie.vote_average} suffix="/10"/>
-                    <p className="movie__genre">{genres}</p>
+                    <div className="movie__image">
+                        <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
+                        <div className="movie__ranking">{oneMovie.vote_average}</div>
+                    </div>
+                    <div className="movie__title">{oneMovie.title}</div>
                 </div>
-            </Link>
-        // </div>
+                <p className="movie__genre">{genres}</p>
+            </div>
+        </Link>
     )
 }
