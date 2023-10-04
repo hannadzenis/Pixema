@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { useAppDispatch } from "../Store/store"
-// import { Title } from "./Title"
+import { Title } from "./Title"
 import { setUserEmail, setUserName, setUserPassword } from "../Store/movieSlice"
 
 
@@ -17,7 +17,7 @@ export const Registration = () => {
     return (
         <div className='wrapper-reg'>
             <div className='container'>
-                {/* <Title /> */}
+                <Title />
                 <form className='reg'>
                     <legend className='reg-title'>Sign Up</legend>
                     <label className='reg-text'>Name</label>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { IMG } from "./RenderMovies"
 import { OneMoviePage, getOneMovie } from "../../Store/getMovies"
+import { AddToFavorites } from "../Favorites"
 
 export const OneMovie = () => {
     const [oneMovie, setOneMovie] = useState<OneMoviePage>()
@@ -39,7 +40,7 @@ export const OneMovie = () => {
                     <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
                 </div>
                 <div className="one-film__favorites">
-                    {/* <AddToFavorites movieId={oneMovie.id} /> */}
+                    <AddToFavorites movieId={oneMovie.id} />
                 </div>
             </div>
             <div className="one-film__info">

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Search } from "./Search"
 import './styles/header.css'
 import { Title } from "./Title"
+import { User } from "./User"
 
 type Props = {
     touched?: boolean,
@@ -20,6 +21,7 @@ export const Header = ({ touched, handleClick }: Props) => {
         <div className='header__wrapper'>
             <Title />
             <Search />
+            <User />
             <button className='header-button' onClick={click}>
                 {isTouched ? <>
                     <hr className='header-span'></hr>

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppSelector } from '../Store/store'
-// import { Title } from './Title'
+import { Title } from './Title'
 
 export const Authorization = () => {
     const [email, setEmail] = useState('')
@@ -15,7 +15,7 @@ export const Authorization = () => {
     return (
         <div className='wrapper-auth'>
             <div className='container'>
-            {/* <Title /> */}
+            <Title />
             <form className='auth'>
                 <legend className='auth-title'>Sign In</legend>
                 <label className='auth-text'>Email</label>

@@ -6,6 +6,7 @@ import { AllMovies } from "./Movies/MovieList"
 import { OneMovie } from "./Movies/oneMovie"
 import { FavoriteMovies } from "./FilterMovies"
 import { PopularMovies } from "./Popuar"
+import { Filter } from "./Filter"
 
 export const MainPage = () => {
     const [showMenu, setShowMenu] = useState(true)
@@ -29,6 +30,7 @@ export const MainPage = () => {
                     </Routes>
                 </div>
             </div>
+            <Filter />
         </>
     )
 }
