@@ -15,20 +15,20 @@ export const Registration = () => {
     const navigate = useNavigate()
 
     return (
-        <div className='wrapper-reg'>
-            <div className='container'>
+        <div className='auth'>
+            <div className='black-filter'>
                 <Title />
-                <form className='reg'>
-                    <legend className='reg-title'>Sign Up</legend>
-                    <label className='reg-text'>Name</label>
-                    <input className='reg-input' type='text' placeholder="Your Name" value={name} onChange={(e) => { setName(e.target.value) }}></input>
-                    <label className='reg-text'>Email</label>
-                    <input className='reg-input' type='text' placeholder="Your Email" value={email} onChange={(e) => { setEmail(e.target.value) }}></input>
-                    <label className='reg-text'>Password</label>
-                    <input className='reg-input' type='password' placeholder="Your Password" value={password} onChange={(e) => { setPassword(e.target.value) }}></input>
-                    <label className='reg-text'>Confirm password</label>
-                    <input className='reg-input' type='password' placeholder="Your Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }}></input>
-                    <button className='reg-button' onClick={(e) => {
+                <form className='auth__form'>
+                    <legend className='auth__form__title'>Sign Up</legend>
+                    <label className='auth__form__text'>Name</label>
+                    <input className='auth__form__input' type='text' placeholder="Your Name" value={name} onChange={(e) => { setName(e.target.value) }}></input>
+                    <label className='auth__form__text'>Email</label>
+                    <input className='auth__form__input' type='text' placeholder="Your Email" value={email} onChange={(e) => { setEmail(e.target.value) }}></input>
+                    <label className='auth__form__text'>Password</label>
+                    <input className='auth__form__input' type='password' placeholder="Your Password" value={password} onChange={(e) => { setPassword(e.target.value) }}></input>
+                    <label className='auth__form__text'>Confirm password</label>
+                    <input className='auth__form__input' type='password' placeholder="Your Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }}></input>
+                    <button className='auth__form__button' onClick={(e) => {
                         e.preventDefault();
                         dispatch(setUserName(name));
                         dispatch(setUserEmail(email));
@@ -38,7 +38,7 @@ export const Registration = () => {
                         }
                         else alert('Password mismatch')
                     }}>Sign Up</button>
-                    <p className='reg-footer'>Already have an account? <Link className='auth-link' to='/auth'>Sign In</Link></p>
+                    <p className='auth__form__footer'>Already have an account? <Link className='auth__form__link' to='/auth'>Sign In</Link></p>
                 </form>
             </div>
         </div>
