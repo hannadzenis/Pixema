@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { useAppDispatch } from "../Store/store"
 import { Title } from "./Title"
 import { setUserEmail, setUserName, setUserPassword } from "../Store/movieSlice"
+import './styles/authreg.css'
 
 
 export const Registration = () => {

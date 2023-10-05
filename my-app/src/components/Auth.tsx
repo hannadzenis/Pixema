@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppSelector } from '../Store/store'
 import { Title } from './Title'
+import './styles/authreg.css'
 
 export const Authorization = () => {
     const [email, setEmail] = useState('')
