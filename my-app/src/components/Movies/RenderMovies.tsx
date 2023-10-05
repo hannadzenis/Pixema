@@ -14,15 +14,15 @@ export const RenderMovie = ({ oneMovie }: { oneMovie?: OneMovieWithGenre }) => {
 
     return (
         <Link to={'/movies/' + oneMovie.id} style={{textDecoration:'none'}}>
-            <div className="movie">
+            <div className="movies">
                 <div>
-                    <div className="movie__image">
+                    <div className="movies__image">
                         <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
-                        <div className="movie__ranking">{oneMovie.vote_average}</div>
+                        <div className="movies__ranking">{oneMovie.vote_average}</div>
                     </div>
-                    <div className="movie__title">{oneMovie.title}</div>
+                    <div className="movies__title">{oneMovie.title}</div>
                 </div>
-                <p className="movie__genre">{genres}</p>
+                <p className="movies__genre">{genres}</p>
             </div>
         </Link>
     )

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { OneGenre } from "../Store/getMovies";
 import { useAppSelector } from "../Store/store";
 import { RenderMovie } from "./Movies/RenderMovies";
@@ -11,11 +12,14 @@ export const FavoriteMovies = () => {
         return state.movies.movies.map(movie => ({ ...movie, genre: genresIdsToNames(movie.genre_ids) }))
     })
 
-    const favMovies = movies.filter(movie => movie.favorite)
+    useEffect(()=>{
+        localStorage.getItem('DFX-favourites')
+    }, [])
 
+    const favMovies = movies.filter(movie => movie.favorite)
     return (
         <div className="films-wrapper">
-            {!favMovies.length && <span className='not-found'>No favorite movies</span>}
+            {!favMovies.length && <span>No favorite movies</span>}
             {favMovies.map(movie => <RenderMovie oneMovie={movie} key={movie.id} />)}
         </div>
     )

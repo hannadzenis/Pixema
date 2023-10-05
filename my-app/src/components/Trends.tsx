@@ -17,7 +17,7 @@ export const PopularMovies = () => {
     })
 
     return (
-        <div className="films-wrapper">
+        <div className="movies__wrapper">
             {movies.map(movie => <RenderMovie oneMovie={movie} key={movie.id} />)}
         </div>
     )

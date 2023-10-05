@@ -2,7 +2,7 @@ const MOVIES = 'https://api.themoviedb.org/3/discover/movie';
 const GENRES = 'https://api.themoviedb.org/3/genre/movie/list';
 const FINDBYID = 'https://api.themoviedb.org/3/movie';
 const FINDBYSEARCH = 'https://api.themoviedb.org/3/search/movie';
-const POPULARMOVIES = 'https://api.themoviedb.org/3/movie/popular';
+const POPULARMOVIES = 'https://api.themoviedb.org/3/movie/top_rated';
 
 export type OneMovie = {
     genre_ids: number[],
