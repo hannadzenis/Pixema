@@ -1,69 +1,64 @@
-// import { useState, SetStateAction, useEffect } from "react"
-import { useState } from "react"
-import { setMovies} from "../Store/movieSlice"
+import { setMovies, setYearSorting} from "../Store/movieSlice"
 import { useAppSelector, useAppDispatch } from "../Store/store"
-// import { getMovies } from "../Store/getMovies"
 import './styles/filter.css'
 
 export const Filter = () => {
-    // const isTouched = useAppSelector(state => state.movies.isTouched)
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const movies = useAppSelector(state => state.movies.movies);
 
-    const movies = useAppSelector(state => state.movies.movies)
-
-    const moviesArr = movies.slice(0)
-
-    const sortByYear = moviesArr.sort((a, b) => {
-        const result = +(b.release_date) > +(a.release_date) ? 1 : -1;
+    const yearArr = Array.from(movies);
+    const sortByHighYear = yearArr.sort((a, b) => {
+        const dateA = new Date(a.release_date);
+        const dateB = new Date(b.release_date);
+        const result = +dateB - +dateA;
         return result
-    })
+    });
 
-    // const genres = useAppSelector(state => state.movies.genres)
+    const dateArr = Array.from(movies);
+    const sortByLowYear = dateArr.sort((a, b) => {
+        const dateA = new Date(a.release_date);
+        const dateB = new Date(b.release_date);
+        const result = +dateA - +dateB;
+        return result
+    });
 
-    // const genresList = genres.map(genre => {
-    //     return <button value={genre.id} key={genre.id}>{genre.name}</button>
-    // })
+    const ratHighArr = Array.from(movies)
+    const sortByHighRating = ratHighArr.sort((a, b) => {
+        const result = +(b.vote_average) - +(a.vote_average);
+        return result
+    });
 
-    // const [genre, setGenre] = useState('');
-    // const [page, setPage] = useState(1);
-
-    // const handleChange = (event: { target: { value: SetStateAction<string> } }) => {
-    //     setGenre(event.target.value);
-    // }
-
-// useEffect(() => {getMovies(genre).then((resp) => dispatch(setMovies(resp.results)))}, [genre])
-
-    // const filtredMoviesArr = movies.filter(movie => movie.genre_ids.includes(+genre))
-    
+    const ratLowArr = Array.from(movies)
+    const sortByLowRating = ratLowArr.sort((a, b) => {
+        const result = +(a.vote_average) - +(b.vote_average);
+        return result
+    });
 
     return (
         <>
-            {/* <div className={isTouched ? 'show-filter' : 'hide-filter'}> */}
-                {/* <div className="filter-title">
-                    <h3>Filters</h3>
-                    <button className="filter-close-button" onClick={() => { dispatch(toggleFilter(false)) }}>✖</button>
-                </div> */}
                 <div className="filter">
                     Sort by
                     <div>
                         <button className="filter__item" onClick={() => {
-                            dispatch(setMovies(sortByYear))
-                        }}>Year</button>
+                            dispatch(setYearSorting(sortByHighYear))
+                        }}>Newest</button>
                     </div>
-                    {/* <p>Genres</p> */}
-                    {/* <div className="filter-by-genres">
-                        <div>
-                            <select value={genre} onChange={handleChange}>
-                                <button disabled value="">
-                                    <em>Select genre</em>
-                                </button>
-                                {genresList}
-                            </select>
-                        </div>
-                    </div> */}
+                    <div>
+                        <button className="filter__item" onClick={() => {
+                            dispatch(setYearSorting(sortByLowYear))
+                        }}>Oldest</button>
+                    </div>
+                    <div>
+                        <button className="filter__item" onClick={() => {
+                            dispatch(setMovies(sortByHighRating))
+                        }}>Rating ▼</button>
+                    </div>
+                    <div>
+                        <button className="filter__item" onClick={() => {
+                            dispatch(setMovies(sortByLowRating))
+                        }}>Rating ▲</button>
+                    </div>
                 </div>
-                {/* <button className="button-show-results" onClick={() => dispatch(setMovies(filtredMoviesArr))}>Show Results</button> */}
-            {/* </div> */}
         </>
     )
 }
