@@ -56,8 +56,8 @@ type SearchParams = { search?: string }
 
 export const getMovies = async (page?: number, genre?: string) => {
     const moviesUrl = new URL(MOVIES);
-    if (page) moviesUrl.searchParams.set("page", String(page));
-    if (genre) moviesUrl.searchParams.set("with_genres", String(genre));
+    // if (page) moviesUrl.searchParams.set("page", String(page));
+    // if (genre) moviesUrl.searchParams.set("with_genres", String(genre));
     const options = {
         method: 'GET',
         headers: {
