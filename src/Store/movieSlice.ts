@@ -40,6 +40,9 @@ export const moviesSlice = createSlice({
         setMovies: (state, action: PayloadAction<OneMovie[]>) => {
             state.movies = action.payload
         },
+        setYearSorting: (state, action: PayloadAction<OneMovie[]> ) => {
+            state.movies = action.payload
+        },
         toggleFavoritesMovie: (state, action: PayloadAction<number>) => {
             const movie = state.movies.find(movie => movie.id === action.payload)
             if (!movie) return
@@ -71,7 +74,7 @@ export const moviesSlice = createSlice({
     },
 })
 
-export const { setGenres, setUserName, setUserEmail, setUserPassword, setMovies, toggleFavoritesMovie,toggleFilter } = moviesSlice.actions
+export const { setYearSorting, setGenres, setUserName, setUserEmail, setUserPassword, setMovies, toggleFavoritesMovie,toggleFilter } = moviesSlice.actions
 export const moviesReducer = moviesSlice.reducer
 
 
