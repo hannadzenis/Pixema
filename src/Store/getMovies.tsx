@@ -2,7 +2,7 @@ const MOVIES = 'https://api.themoviedb.org/3/discover/movie';
 const GENRES = 'https://api.themoviedb.org/3/genre/movie/list';
 const FINDBYID = 'https://api.themoviedb.org/3/movie';
 const FINDBYSEARCH = 'https://api.themoviedb.org/3/search/movie';
-const POPULARMOVIES = 'https://api.themoviedb.org/3/movie/popular';
+const POPULARMOVIES = 'https://api.themoviedb.org/3/movie/top_rated';
 
 export type OneMovie = {
     genre_ids: number[],
@@ -56,8 +56,8 @@ type SearchParams = { search?: string }
 
 export const getMovies = async (page?: number, genre?: string) => {
     const moviesUrl = new URL(MOVIES);
-    if (page) moviesUrl.searchParams.set("page", String(page));
-    if (genre) moviesUrl.searchParams.set("with_genres", String(genre));
+    // if (page) moviesUrl.searchParams.set("page", String(page));
+    // if (genre) moviesUrl.searchParams.set("with_genres", String(genre));
     const options = {
         method: 'GET',
         headers: {

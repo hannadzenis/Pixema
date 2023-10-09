@@ -8,6 +8,7 @@ export type MovieState = {
     userEmail: string,
     userPassword: string,
     isTouched: boolean,
+    favorites: boolean,
 }
 
 const initialState: MovieState = { 
@@ -17,6 +18,7 @@ const initialState: MovieState = {
     userEmail: '',
     userPassword: '',
     isTouched: false,
+    favorites: false,
 }
 
 export const getMoviesThunk = createAsyncThunk("movies/getMovies", async ({ search = '' }: { search?: string }) => {

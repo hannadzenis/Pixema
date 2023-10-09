@@ -6,7 +6,7 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
-.movie{
+.movies{
     max-width: 266px;
     min-height: 480px;
     padding: 10px;
@@ -23,7 +23,7 @@ body{
 .movies__wrapper{
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(240px, auto));
     grid-template-rows: repeat(1, minmax(200px, auto));
     grid-auto-rows: minmax(200px, auto);
     justify-content: center;
@@ -31,34 +31,34 @@ body{
     gap: 10px;
 }
 
-.movie__title{
+.movies__title{
     margin: 10px 0;
     color: white;
     font-size: 16px;
     line-height: 24px;
 }
 
-.movie__image{
+.movies__image{
     max-width: 266px;
     height: 357px;
     position: relative;
 }
 
-.movie__image img{
+.movies__image img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
 }
 
-.movie__genre{
+.movies__genre{
     color: #AFB2B6;;
     font-size: 13px;
     line-height: 24px;
 
 }
 
-.movie__ranking{
+.movies__ranking{
     min-width: 25px;
     min-height: 20px;
     position: absolute;

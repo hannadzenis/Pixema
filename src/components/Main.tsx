@@ -3,8 +3,8 @@ import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import { Header } from "./Header"
 import { OneMovie } from "./Movies/oneMovie"
-import { FavoriteMovies } from "./FilterMovies"
-import { PopularMovies } from "./Popuar"
+import { FavoriteMovies } from "./FavMovies"
+import { PopularMovies } from "./Trends"
 import { Filter } from "./Filter"
 import './styles/menu.css'
 import './styles/main.css'
@@ -34,7 +34,6 @@ export const MainPage = () => {
                     </div>
                 </div>
             </div>
-            <Filter />
         </>
     )
 }
