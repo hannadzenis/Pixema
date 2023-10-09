@@ -84,24 +84,7 @@
     /* text-decoration: none; */
 }
 
-/* .svgFav{
-    max-width: 25px;
-    margin: 0 auto; */
-
-/* } */
-
-/* .svgFav svg{
-    width: 100%;
-    height: 100%;
-    fill: white;
-} */
-
 .addFav:hover{
-    background: rgb(68, 47, 100);
-    fill:  rgb(176, 163, 197);
-}
-
-.addFav:focus{
     background: rgb(68, 47, 100);
     fill:  rgb(176, 163, 197);
 }

@@ -1,4 +1,4 @@
-import './styles/header.css'
+import './styles/main.css'
 
 export const Title = () => {
     return(

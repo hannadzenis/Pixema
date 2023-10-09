@@ -23,7 +23,7 @@ body{
 .movies__wrapper{
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(240px, auto));
     grid-template-rows: repeat(1, minmax(200px, auto));
     grid-auto-rows: minmax(200px, auto);
     justify-content: center;
