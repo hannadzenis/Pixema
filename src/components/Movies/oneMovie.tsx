@@ -34,7 +34,7 @@ export const OneMovie = () => {
                     <img src={IMG + oneMovie.poster_path} alt={'img'}></img>
                 </div>
                 <div className="movie__favorites">
-                    <AddToFavorites movieId={oneMovie.id} />
+                    <AddToFavorites movie={oneMovie} movieId={oneMovie.id}/>
                 </div>
             </div>
             <div className="movie__descr">

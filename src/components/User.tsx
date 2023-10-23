@@ -19,7 +19,6 @@ export const User = () => {
     else
         return (
             <div className='profile__wrapper'>
-                {/* <PersonIcon sx={{ color: "#20B2AA", fontSize: 40 }} /> */}
                 <Link className='profle__name' to='/auth'>Sign in</Link>
             </div>
         )

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getMoviesThunk, toggleFilter } from '../Store/movieSlice';
+import { getMoviesThunk } from '../Store/movieSlice';
 import { useAppDispatch } from '../Store/store';
 import './styles/header.css'
 
@@ -13,10 +13,6 @@ export const Search = () => {
                 setSearchResult(e.currentTarget.value)
                 dispatch(getMoviesThunk({ search: e.currentTarget.value }))
             }}></input>
-            {/* <button className='sort__button' onClick={() => {
-                dispatch(toggleFilter(true))
-            }}>
-            </button> */}
         </div>
     )
 }

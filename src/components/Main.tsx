@@ -5,7 +5,6 @@ import { Header } from "./Header"
 import { OneMovie } from "./Movies/oneMovie"
 import { FavoriteMovies } from "./FavMovies"
 import { PopularMovies } from "./Trends"
-import { Filter } from "./Filter"
 import './styles/menu.css'
 import './styles/main.css'
 import { MovieList } from "./Movies/MovieList"
@@ -28,7 +27,7 @@ export const MainPage = () => {
                         <Routes>
                             <Route index element={<MovieList />} />
                             <Route path=':movieId' element={<OneMovie />} />
-                            <Route path='favorite' element={<FavoriteMovies />} />
+                            <Route path='favorite' element={<FavoriteMovies/>} />
                             <Route path='popular' element={<PopularMovies />} />
                         </Routes>
                     </div>

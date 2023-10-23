@@ -1,31 +1,24 @@
-import { useEffect, useState } from "react";
-import { OneGenre } from "../Store/getMovies";
-import { useAppSelector } from "../Store/store";
+import { useRef } from "react";
+import { OneMovieWithGenre } from "../Store/getMovies";
 import { RenderMovie } from "./Movies/RenderMovies";
+import useLocalStorage from "react-use-localstorage";
+import './styles/movies.css';
 
 
 export const FavoriteMovies = () => {
-    const favorites = useAppSelector(state => {
-        const genresIdsToNames = (genresIds: number[]) => genresIds.map(genreIdToName);
-        console.log(genresIdsToNames)
-        const genres: OneGenre[] = state.movies.genres
-        const genreIdToName = (genreId: number) => genres.find(({ id }) => id === genreId)?.name
-        return state.movies.movies.map(movie => ({ ...movie, genre: genresIdsToNames(movie.genre_ids) }))
-    })
 
-    // const [favorites, setFavorites] = useState(() => {
-    //     // getting stored value
-    //     const saved = localStorage.getItem("DFX-favourites");
-    //     const initialValue = JSON.stringify(saved);
-    //     const favs = Object(initialValue)
-    //     return favs;
-    // });
+    const [storageItem, setStorageItem] = useLocalStorage(
+        'Favourites',
+        JSON.stringify([]),
+    )
+    const storagedArray = useRef(JSON.parse(storageItem));
+    const favorites = storagedArray.current;
+    
 
-    const favMovies = favorites.filter(movie => movie.favorite)
     return (
-        <div>
-            {!favMovies.length && <span>No favorite movies</span>}
-            {favMovies.map(movie => <RenderMovie oneMovie={movie} key={movie.id} />)}
+        <div className="movies__wrapper">
+            {!favorites.length && <span>No favorite movies</span>}
+            {favorites.map((movie: OneMovieWithGenre) => <RenderMovie oneMovie={movie} key={movie.id} />)}
         </div>
     )
 }
