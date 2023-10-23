@@ -1,9 +1,7 @@
 import { useState } from "react"
 import { Search } from "./Search"
 import './styles/header.css'
-import { Title } from "./Title"
 import { User } from "./User"
-import { Filter } from "./Filter"
 
 type Props = {
     touched?: boolean,
